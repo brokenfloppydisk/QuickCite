@@ -2,7 +2,7 @@ package lib.parse;
 
 import lib.publication.Publication;
 
-public class DOIParser implements Parser {
+public class DOIParser extends Parser {
     private String doiLink;
     
     public DOIParser(String doiLink) {
