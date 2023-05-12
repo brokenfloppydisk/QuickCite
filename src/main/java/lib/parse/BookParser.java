@@ -1,9 +1,5 @@
 package lib.parse;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-
 import lib.publication.Publication;
 
 public class BookParser extends Parser {
@@ -11,6 +7,13 @@ public class BookParser extends Parser {
     
     public BookParser(String iSBNString) {
         this.iSBNString = iSBNString;
+    }
+
+    private String getBookJSON() {
+        return super.getRequest(
+            "https://www.googleapis.com/books/v1/volumes?q=isbn:"
+            .concat(iSBNString)
+        );
     }
 
     public Publication toPublication() {

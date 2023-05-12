@@ -24,23 +24,29 @@ public abstract class Parser {
         return client;
     }
 
-    public String getRequest(String link) throws IOException, InterruptedException {
+    public String getRequest(String link) {
         // https://www.twilio.com/blog/5-ways-to-make-http-requests-in-java
         HttpClient client = getClient();
 
         HttpRequest request = HttpRequest.newBuilder(
             URI.create(
                 link
-                // "https://www.googleapis.com/books/v1/volumes?q=isbn:"
-                // .concat(iSBNString)
             ))
             .timeout(Duration.ofSeconds(10))
             .GET()
             .header("accept", "text/html,application/json")
             .build();
         
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response;
 
-        return response.body();
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return response.body();
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Error: Could not get data");
+            e.printStackTrace();
+            
+            return null;
+        }
     }
 }
