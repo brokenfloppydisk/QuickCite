@@ -24,7 +24,7 @@ public abstract class Parser {
         return client;
     }
 
-    public String getRequest(String link) {
+    protected String getRequest(String link) {
         // https://www.twilio.com/blog/5-ways-to-make-http-requests-in-java
         HttpClient client = getClient();
 

@@ -1,5 +1,8 @@
 package lib.parse;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import lib.publication.Publication;
 
 public class BookParser extends Parser {
@@ -9,7 +12,7 @@ public class BookParser extends Parser {
         this.iSBNString = iSBNString;
     }
 
-    private String getBookJSON() {
+    public String getBookJSON() {
         return super.getRequest(
             "https://www.googleapis.com/books/v1/volumes?q=isbn:"
             .concat(iSBNString)
@@ -17,6 +20,16 @@ public class BookParser extends Parser {
     }
 
     public Publication toPublication() {
+        String bookJSON = getBookJSON();
+
+        ArrayList<String> authors = new ArrayList<String>();
+        String title;
+        Date publishDate;
+        
         return null;
+    }
+
+    public String toString() {
+        return String.format("Book %s", iSBNString);
     }
 }
