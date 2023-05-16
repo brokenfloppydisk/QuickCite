@@ -9,6 +9,6 @@ public class ParseTest {
     public void testBookFetch() {
         BookParser testParser = new BookParser("9780134092669");
 
-        System.out.println(testParser.toPublication());
+        System.out.println(testParser.getBookJSON());
     }
 }

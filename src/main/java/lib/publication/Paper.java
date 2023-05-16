@@ -4,13 +4,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Paper implements Publication {
-    private ArrayList<String> authors;
+    private ArrayList<Author> authors;
     private String title;
     private Date publishDate;
     private String link;
 
-    public Paper(ArrayList<String> authors, String title, Date publishDate, String link) {
+    public Paper(ArrayList<Author> authors, String title, Date publishDate, String link) {
         this.authors = authors;
+        this.title = title;
+        this.publishDate = publishDate;
+        this.link = link;
+    }
+
+    public Paper(String title, ArrayList<String> authors, Date publishDate, String link) {
+        ArrayList<Author> authorsList = new ArrayList<Author>();
+        for (String author: authors) {
+            authorsList.add(new Author(author));
+        }
+        this.authors = authorsList;
         this.title = title;
         this.publishDate = publishDate;
         this.link = link;
