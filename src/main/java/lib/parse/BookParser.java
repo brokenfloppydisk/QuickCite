@@ -3,7 +3,12 @@ package lib.parse;
 import java.util.ArrayList;
 import java.util.Date;
 
+import lib.publication.Book;
+import lib.publication.Items;
 import lib.publication.Publication;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BookParser extends Parser {
     private String iSBNString;
@@ -28,6 +33,21 @@ public class BookParser extends Parser {
         
         return null;
     }
+
+    // I dont know where this goes
+    public Items formatJsonToItems() {
+        // ObjectMapper instantiation
+        ObjectMapper objectMapper = new ObjectMapper();
+        
+        // Deserialization into the `Book` class
+        try {
+            return objectMapper.readValue(iSBNString, Items.class);
+        } catch (JsonProcessingException e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
 
     public String toString() {
         return String.format("Book %s", iSBNString);
