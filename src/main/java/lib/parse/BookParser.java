@@ -6,6 +6,7 @@ import java.util.Date;
 import lib.publication.Book;
 import lib.publication.Items;
 import lib.publication.Publication;
+import lib.publication.VolumeInfo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,13 +36,16 @@ public class BookParser extends Parser {
     }
 
     // I dont know where this goes
-    public Items formatJsonToItems() {
+    public Book formatJsonToBook() {
         // ObjectMapper instantiation
         ObjectMapper objectMapper = new ObjectMapper();
         
         // Deserialization into the `Book` class
         try {
-            return objectMapper.readValue(iSBNString, Items.class);
+            Items items = objectMapper.readValue(iSBNString, Items.class);
+            VolumeInfo volInfo = items.getVolumeInfo();
+            
+            return new Book(volInfo.getAuthors(), volInfo.getTitle(), volInfo.getDate(), iSBNString);
         } catch (JsonProcessingException e) {
             System.out.println(e);
             return null;
