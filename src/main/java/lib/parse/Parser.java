@@ -24,18 +24,9 @@ public abstract class Parser {
         return client;
     }
 
-    protected String getRequest(String link) {
+    protected String getRequest(HttpRequest request) {
         // https://www.twilio.com/blog/5-ways-to-make-http-requests-in-java
         HttpClient client = getClient();
-
-        HttpRequest request = HttpRequest.newBuilder(
-            URI.create(
-                link
-            ))
-            .timeout(Duration.ofSeconds(10))
-            .GET()
-            .header("accept", "text/html,application/json")
-            .build();
         
         HttpResponse<String> response;
 

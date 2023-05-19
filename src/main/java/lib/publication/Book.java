@@ -1,6 +1,7 @@
 package lib.publication;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Book implements Publication {
@@ -34,5 +35,15 @@ public class Book implements Publication {
     public String toMLA() {
 
         return "";
+    }
+
+    public String toString() {
+        return String.format(
+            "Book: {Authors: %s, Title: %s, Publication Date: %s, ISBN: %s}",
+            Arrays.toString(authors.toArray()),
+            title,
+            publishDate.toString(),
+            iSBNString    
+        );
     }
 }
