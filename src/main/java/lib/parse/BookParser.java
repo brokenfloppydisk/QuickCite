@@ -3,13 +3,14 @@ package lib.parse;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lib.publication.Book;
+import lib.publication.EntireJSON;
 import lib.publication.Items;
 import lib.publication.Publication;
 import lib.publication.VolumeInfo;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BookParser extends Parser {
     private String iSBNString;
@@ -42,10 +43,11 @@ public class BookParser extends Parser {
         
         // Deserialization into the `Book` class
         try {
-            Items items = objectMapper.readValue(bookJSON, Items.class);
-            VolumeInfo volInfo = items.getVolumeInfo();
+            EntireJSON entire = objectMapper.readValue(bookJSON, EntireJSON.class);
+            Items items = entire.getItems();
+            VolumeInfo volumeInfo = items.getVolumeInfo();
             
-            return new Book(volInfo.getAuthors(), volInfo.getTitle(), volInfo.getDate(), iSBNString);
+            return new Book(volumeInfo.getAuthors(), volumeInfo.getTitle(), volumeInfo.getDate(), iSBNString);
         } catch (JsonProcessingException e) {
             System.out.println(e);
             return null;
