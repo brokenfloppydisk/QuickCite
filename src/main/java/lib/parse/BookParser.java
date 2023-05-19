@@ -36,13 +36,13 @@ public class BookParser extends Parser {
     }
 
     // I dont know where this goes
-    public Book formatJsonToBook() {
+    public Book formatJsonToBook(String bookJSON) {
         // ObjectMapper instantiation
         ObjectMapper objectMapper = new ObjectMapper();
         
         // Deserialization into the `Book` class
         try {
-            Items items = objectMapper.readValue(iSBNString, Items.class);
+            Items items = objectMapper.readValue(bookJSON, Items.class);
             VolumeInfo volInfo = items.getVolumeInfo();
             
             return new Book(volInfo.getAuthors(), volInfo.getTitle(), volInfo.getDate(), iSBNString);
