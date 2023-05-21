@@ -56,14 +56,14 @@ public class BookParser extends Parser {
         
         // Deserialization into the `Book` class
         try {
-            // BookJSON entire = objectMapper.readValue(bookJSON, BookJSON.class);
-            // var volumeInfo = entire.getBookData().get(0).getVolumeInfo();
+            BookJSON entire = objectMapper.readValue(bookJSON, BookJSON.class);
+            var volumeInfo = entire.getBookData().get(0).getVolumeInfo();
             // EntireJSON entire = objectMapper.readValue(bookJSON, EntireJSON.class);
-            Items items = objectMapper.readValue(bookJSON, Items.class);
+            // Items items = objectMapper.readValue(bookJSON, Items.class);
             // entire.getItems();
-            VolumeInfo volumeInfo = items.getVolumeInfo();
+            // VolumeInfo volumeInfo = items.getVolumeInfo();
             
-            return new Book(volumeInfo.getAuthors(), volumeInfo.getTitle(), volumeInfo.getDate(), iSBNString);
+            return new Book(volumeInfo.getTitle(), volumeInfo.getAuthors(), volumeInfo.getDate(), iSBNString);
             // return null;
         } catch (JsonProcessingException e) {
             System.out.println(e);
