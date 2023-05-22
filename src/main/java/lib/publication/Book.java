@@ -43,7 +43,7 @@ public class Book implements Publication {
             Arrays.toString(authors.toArray()),
             title,
             publishDate.toString(),
-            iSBNString    
+            iSBNString
         );
     }
 }
