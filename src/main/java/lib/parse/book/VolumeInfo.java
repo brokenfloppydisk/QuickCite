@@ -15,6 +15,9 @@ public class VolumeInfo {
     @JsonProperty("title")
     private String title;
 
+    @JsonProperty("publisher")
+    private String publisher;
+
     // TODO: Stop using java.util.Date and switch to java.util.Calendar
     @JsonProperty("publishedDate")
     private Date publishDate;
@@ -29,9 +32,14 @@ public class VolumeInfo {
         return title;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
+
     public Date getDate() {
         return publishDate;
     }
+
 
     public String toString() {
         return String.format(
