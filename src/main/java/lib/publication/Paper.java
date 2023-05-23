@@ -27,6 +27,22 @@ public class Paper implements Publication {
         this.link = link;
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public ArrayList<Author> getAuthors() {
+        return this.authors;
+    }
+
+    public Date getDate() {
+        return this.publishDate;
+    }
+
+    public String getLink() {
+        return this.link;
+    }
+
     public String toAPA() {
 
         return "";

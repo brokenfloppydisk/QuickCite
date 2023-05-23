@@ -1,10 +1,11 @@
 package lib.parse.book;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lib.publication.Book;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookJSON {
@@ -54,5 +55,11 @@ public class BookJSON {
             totalItems,
             bookDataString
         );
+    }
+
+    public Book toBook(String iSBNString) {
+        var volumeInfo = getBookData().get(0).getVolumeInfo();
+
+        return new Book(volumeInfo.getTitle(), volumeInfo.getAuthors(), volumeInfo.getDate(), iSBNString);
     }
 }

@@ -1,7 +1,5 @@
 package lib.parse.book;
 
-import java.util.List;
-
 // import com.fasterxml.jackson.core.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

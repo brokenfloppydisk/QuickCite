@@ -42,6 +42,22 @@ public class Book implements Publication {
         return "";
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public ArrayList<Author> getAuthors() {
+        return this.authors;
+    }
+
+    public Date getDate() {
+        return this.publishDate;
+    }
+
+    public String getISBN() {
+        return this.iSBNString;
+    }
+
     public String toString() {
         return String.format(
             "Book: {Authors: %s, Title: %s, Publication Date: %s, ISBN: %s}",
