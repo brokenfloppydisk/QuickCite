@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'java'
 
 ext {
-   javaMainClass = "main.java.app.App"
+   javaMainClass = "app.App"
 }
 
 application {
