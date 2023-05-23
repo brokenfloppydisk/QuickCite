@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lib.parse.doi.DOIJSON;
 import lib.parse.doi.Message;
 import lib.publication.Paper;
 
@@ -67,7 +68,7 @@ public class DOIParser extends Parser {
 
         // Deserialization into the `Book` class
         try {
-            var entire = objectMapper.readValue(getDOIJSON(), Message.class);
+            var entire = objectMapper.readValue(getDOIJSON(), DOIJSON.class);
             return entire.toPaper("https://doi.org/" + this.doi);
         } catch (JsonProcessingException e) {
             System.out.println(e);

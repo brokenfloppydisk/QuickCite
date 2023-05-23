@@ -42,15 +42,7 @@ public class Message {
     @JsonProperty("author")
     private ArrayList<AuthorData> authors;
 
-    private class DateInfo {
-        @JsonProperty("date-parts")
-        private ArrayList<ArrayList<Integer>> dates;
-
-        @JsonProperty("date-time")
-        private String dateString;
-
-        private DateInfo() {}
-    }
+    public Message() {}
 
     public ArrayList<Author> getAuthors() {
         ArrayList<Author> authorsList = new ArrayList<Author>();
@@ -63,5 +55,10 @@ public class Message {
     public Paper toPaper(String doiLink) {
         // TODO: Add date parsing
         return new Paper(getAuthors(), title.get(0), new Date(0), doiLink);
+    }
+
+    public Paper toPaper() {
+        // TODO: Add date parsing
+        return new Paper(getAuthors(), title.get(0), new Date(0), DOI);
     }
 }

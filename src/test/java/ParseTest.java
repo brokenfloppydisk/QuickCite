@@ -53,10 +53,11 @@ public class ParseTest {
         assertTrue(result.getTitle().equals("Computer Systems"));
     }
 
-    // @Test
-    // public void testDOIFetch() {
-    //     DOIParser testParser = new DOIParser("10.1037/0003-066X.59.1.29/");
-    //     Paper result = testParser.toPublication();
-    //     // assertTrue(result.getTitle().equals("How the Mind Hurts and Heals the Body."));
-    // }
+    @Test
+    public void testDOIFetch() {
+        DOIParser testParser = new DOIParser("10.1037/0003-066X.59.1.29/");
+        Paper result = testParser.toPublication();
+
+        assertTrue(result.getTitle().equals("How the Mind Hurts and Heals the Body."));
+    }
 }
