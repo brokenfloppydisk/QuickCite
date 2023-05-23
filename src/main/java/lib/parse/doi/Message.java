@@ -39,6 +39,9 @@ public class Message {
     @JsonProperty("published-online")
     private DateInfo onlinePublishDate;
 
+    @JsonProperty("created")
+    private DateInfo createdDate;
+
     @JsonProperty("author")
     private ArrayList<AuthorData> authors;
 

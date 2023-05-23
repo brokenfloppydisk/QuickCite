@@ -45,7 +45,10 @@ public class Paper implements Publication {
     }
 
     public String toAPA() {
-
+        // Author, A. A., & Author, B. B. (Date of publication). Article Title. Journal Title, Vol. #(Issue # if available), page range. doi #
+        String str = String.format("%s, %s",
+            author.getAuthors
+        )
         return "";
     }
 
@@ -56,11 +59,10 @@ public class Paper implements Publication {
 
     public String toString() {
         return String.format(
-            "Paper: {Authors: %s, Title: %s, Publication Date: %s, Edition: %s, DOI Link: %s}",
+            "Paper: {Authors: %s, Title: %s, Publication Date: %s, DOI Link: %s}",
             Arrays.toString(authors.toArray()),
             title,
             publishDate.toString(),
-            edition,
             link
         );
     }
