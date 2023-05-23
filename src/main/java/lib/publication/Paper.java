@@ -45,7 +45,10 @@ public class Paper implements Publication {
     }
 
     public String toAPA() {
-
+        // Author, A. A., & Author, B. B. (Date of publication). Article Title. Journal Title, Vol. #(Issue # if available), page range. doi #
+        String str = String.format("%s, %s",
+            author.getAuthors
+        )
         return "";
     }
 
