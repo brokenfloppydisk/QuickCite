@@ -1,6 +1,5 @@
 package lib.parse.doi;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,6 +38,9 @@ public class Message {
     @JsonProperty("published-online")
     private DateInfo onlinePublishDate;
 
+    @JsonProperty("published-print")
+    private DateInfo printPublishDate;
+
     @JsonProperty("created")
     private DateInfo createdDate;
 
@@ -56,12 +58,10 @@ public class Message {
     }
 
     public Paper toPaper(String doiLink) {
-        // TODO: Add date parsing
-        return new Paper(getAuthors(), title.get(0), new Date(0), doiLink);
+        return new Paper(getAuthors(), title.get(0).replaceAll("\\.", ""), createdDate.toDate(), doiLink, publisher, volume, issue);
     }
 
     public Paper toPaper() {
-        // TODO: Add date parsing
-        return new Paper(getAuthors(), title.get(0), new Date(0), DOI);
+        return new Paper(getAuthors(), title.get(0).replaceAll("\\.", ""), createdDate.toDate(), DOI, publisher, volume, issue);
     }
 }

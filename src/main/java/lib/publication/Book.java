@@ -4,22 +4,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 public class Book implements Publication {
     private ArrayList<Author> authors;
     private String title;
+    private String publisher;
     private LocalDate publishDate;
     private String iSBNString;
 
-    public Book(ArrayList<Author> authors, String title, LocalDate publishDate, String iSBNString) {
+    public Book(ArrayList<Author> authors, String title, LocalDate publishDate, String iSBNString, String publisher) {
         this.authors = authors;
         this.title = title;
         this.publishDate = publishDate;
         this.iSBNString = iSBNString;
+        this.publisher = publisher;
     }
 
-    public Book(String title, ArrayList<String> authors, LocalDate publishDate, String iSBNString) {
+    public Book(String title, ArrayList<String> authors, LocalDate publishDate, String iSBNString, String publisher) {
         ArrayList<Author> authorsList = new ArrayList<Author>();
         for (String author: authors) {
             authorsList.add(new Author(author));
@@ -28,6 +29,7 @@ public class Book implements Publication {
         this.title = title;
         this.publishDate = publishDate;
         this.iSBNString = iSBNString;
+        this.publisher = publisher;
     }
 
     public String toAPA() {
@@ -53,11 +55,13 @@ public class Book implements Publication {
             }
         }
 
-        String.format("%s (%s). %s. %s", 
+        str = String.format("%s (%s). %s. %s.", 
             str,
-            "Year",
+            publishDate.getYear(),
             this.title,
-            "Publisher");
+            this.publisher);
+        
+        str.replaceAll("\\.{2,}", ".");
 
         return str;
     }
@@ -85,11 +89,13 @@ public class Book implements Publication {
                 }
             }
         }
-        str = String.format("%s, %s, %s, %s", 
+        str = String.format("%s. %s. %s. %s.", 
             str,
             this.title,
-            "Publisher",
+            this.publisher,
             publishDate.getYear());
+
+        str.replaceAll("\\.{2,}", ".");
 
         return str;
     }

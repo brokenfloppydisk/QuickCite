@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lib.parse.doi.DOIJSON;
-import lib.parse.doi.Message;
 import lib.publication.Paper;
 
 public class DOIParser extends Parser {

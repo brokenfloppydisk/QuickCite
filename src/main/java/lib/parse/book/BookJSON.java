@@ -60,6 +60,7 @@ public class BookJSON {
     public Book toBook(String iSBNString) {
         var volumeInfo = getBookData().get(0).getVolumeInfo();
 
-        return new Book(volumeInfo.getTitle(), volumeInfo.getAuthors(), volumeInfo.getDate(), iSBNString);
+        return new Book(volumeInfo.getTitle(), volumeInfo.getAuthors(), 
+            volumeInfo.getDate(), iSBNString, volumeInfo.getPublisher());
     }
 }

@@ -8,7 +8,7 @@ public class Author {
     }
 
     public String getLastName() {
-        return name[name.length - 1];
+        return name[name.length - 1].replaceAll("\\.", "");
     }
 
     public String getLastInitial() {
@@ -16,7 +16,7 @@ public class Author {
     }
 
     public String getFirstName() {
-        return name[0];
+        return name[0].replaceAll("\\.", "");
     }
 
     public String getFirstInitial() {

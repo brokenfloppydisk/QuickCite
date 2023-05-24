@@ -1,23 +1,33 @@
 package lib.publication;
 
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.Locale;
 
 public class Paper implements Publication {
     private ArrayList<Author> authors;
     private String title;
-    private Date publishDate;
+    private LocalDate publishDate;
     private String link;
+    private String journal;
+    private String volume;
+    private String issue;
 
-    public Paper(ArrayList<Author> authors, String title, Date publishDate, String link) {
+    public Paper(ArrayList<Author> authors, String title, LocalDate publishDate, 
+                String link, String journal, String volume, String issue) {
         this.authors = authors;
         this.title = title;
         this.publishDate = publishDate;
         this.link = link;
+        this.journal = journal;
+        this.volume = volume;
+        this.issue = issue;
     }
 
-    public Paper(String title, ArrayList<String> authors, Date publishDate, String link) {
+    public Paper(String title, ArrayList<String> authors, LocalDate publishDate, 
+                String link, String journal, String volume, String issue) {
         ArrayList<Author> authorsList = new ArrayList<Author>();
         for (String author: authors) {
             authorsList.add(new Author(author));
@@ -26,6 +36,9 @@ public class Paper implements Publication {
         this.title = title;
         this.publishDate = publishDate;
         this.link = link;
+        this.journal = journal;
+        this.volume = volume;
+        this.issue = issue;
     }
 
     public String getTitle() {
@@ -36,7 +49,7 @@ public class Paper implements Publication {
         return this.authors;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return this.publishDate;
     }
 
@@ -66,12 +79,14 @@ public class Paper implements Publication {
             }
         }
 
-        str = String.format("%s (%s), %s, %s",
+        str = String.format("%s (%s). %s. %s.",
             str,
-            "Year",
+            this.publishDate.getYear(),
             this.title,
-            "Journal Title");
-            
+            this.journal);
+        
+        str.replaceAll("\\.{2,}", ".");
+        
         return str;
     }
 
@@ -99,17 +114,18 @@ public class Paper implements Publication {
             }
         }
 
-        str = String.format("%s, \"%s\", %s, %s, %s, %s, %s",
+        str = String.format("%s. \"%s\". %s. vol. %s, no. %s, %s %s.",
             str,
             this.title,
-            "Journal Title",
-            "Vol #",
-            "No #",
-            "Month",
-            "Year");
+            this.journal,
+            this.volume,
+            this.issue,
+            publishDate.getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH).replace("\\.", ""),
+            publishDate.getYear());
 
+        str.replaceAll("\\.{2,}", ".");
 
-        return "";
+        return str;
     }
 
     public String toString() {
