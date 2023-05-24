@@ -1,5 +1,7 @@
 package lib.parse.book;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -20,7 +22,7 @@ public class VolumeInfo {
 
     // TODO: Stop using java.util.Date and switch to java.util.Calendar
     @JsonProperty("publishedDate")
-    private Date publishDate;
+    private String publishDate;
 
     public VolumeInfo() {}
 
@@ -36,8 +38,13 @@ public class VolumeInfo {
         return publisher;
     }
 
-    public Date getDate() {
-        return publishDate;
+    public LocalDate getDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+        System.out.println(publishDate);
+        LocalDate date = LocalDate.parse(publishDate, formatter);
+        System.out.println("2");
+
+        return date;
     }
 
 
@@ -45,7 +52,7 @@ public class VolumeInfo {
         return String.format(
             "Volume Info: {Title: %s, Publication Date: %s, Authors: {%s}}",
             title,
-            publishDate.toString(),
+            publishDate,
             Arrays.toString(authors.toArray())
         );
     }

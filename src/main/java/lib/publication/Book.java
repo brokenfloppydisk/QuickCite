@@ -1,5 +1,7 @@
 package lib.publication;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -7,17 +9,17 @@ import java.util.Date;
 public class Book implements Publication {
     private ArrayList<Author> authors;
     private String title;
-    private Date publishDate;
+    private LocalDate publishDate;
     private String iSBNString;
 
-    public Book(ArrayList<Author> authors, String title, Date publishDate, String iSBNString) {
+    public Book(ArrayList<Author> authors, String title, LocalDate publishDate, String iSBNString) {
         this.authors = authors;
         this.title = title;
         this.publishDate = publishDate;
         this.iSBNString = iSBNString;
     }
 
-    public Book(String title, ArrayList<String> authors, Date publishDate, String iSBNString) {
+    public Book(String title, ArrayList<String> authors, LocalDate publishDate, String iSBNString) {
         ArrayList<Author> authorsList = new ArrayList<Author>();
         for (String author: authors) {
             authorsList.add(new Author(author));
@@ -86,8 +88,8 @@ public class Book implements Publication {
         str = String.format("%s, %s, %s, %s", 
             str,
             this.title,
-            "Publisher"
-            "Year");
+            "Publisher",
+            publishDate.getYear());
 
         return str;
     }
@@ -100,8 +102,10 @@ public class Book implements Publication {
         return this.authors;
     }
 
-    public Date getDate() {
-        return this.publishDate;
+    public String getFormattedDate() {
+        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd. MMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy, MMMM dd");
+        return formatter.format(publishDate);
     }
 
     public String getISBN() {
