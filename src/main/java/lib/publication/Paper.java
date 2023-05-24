@@ -47,18 +47,18 @@ public class Paper implements Publication {
     public String toAPA() {
         // Author, A. A., & Author, B. B. (Date of publication). Article Title. Journal Title, Vol. #(Issue # if available), page range. doi #
         String str = String.format("%s, %s",
-            authors.getAuthors(0).getLastName(),
-            authors.getAuthors(0).getFirstInitial());
+            authors.get(0).getLastName(),
+            authors.get(0).getFirstInitial());
 
         if (authors.size() > 1) {
             for (int i = 1; i < authors.size(); i++) {
                 if (i == authors.size() - 1){
                     str = String.format("%s, & %s, %s.",
                         str,
-                        authors.get(i).getLastName();
+                        authors.get(i).getLastName(),
                         authors.get(i).getFirstInitial());
                 } else {
-                    str = String.format("%s, %s, %s.")
+                    str = String.format("%s, %s, %s.",
                         str,
                         authors.get(i).getLastName(),
                         authors.get(i).getFirstInitial());
@@ -68,7 +68,7 @@ public class Paper implements Publication {
 
         str = String.format("%s (%s), %s, %s",
             str,
-            "Year"
+            "Year",
             this.title,
             "Journal Title");
             
@@ -80,7 +80,7 @@ public class Paper implements Publication {
 // Last, First. "Title" Journal Title, vol #, no #, Month Year, pp. #-#, DOI link  
 
         String str = String.format("%s, %s.",
-            authors.get(0).getLastName();
+            authors.get(0).getLastName(),
             authors.get(0).getFirstName());
         
         if (authors.size() > 1) {
@@ -106,7 +106,7 @@ public class Paper implements Publication {
             "Vol #",
             "No #",
             "Month",
-            "Year"
+            "Year");
 
 
         return "";

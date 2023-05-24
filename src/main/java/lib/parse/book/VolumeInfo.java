@@ -40,9 +40,7 @@ public class VolumeInfo {
 
     public LocalDate getDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
-        System.out.println(publishDate);
         LocalDate date = LocalDate.parse(publishDate, formatter);
-        System.out.println("2");
 
         return date;
     }
