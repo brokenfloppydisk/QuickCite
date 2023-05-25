@@ -31,9 +31,6 @@ public class DOIParser extends Parser {
             this.doi = null;
             this.isValid = false;
         }
-        
-        
-        this.doi = doiLink;
     }
 
     public boolean isValid() {

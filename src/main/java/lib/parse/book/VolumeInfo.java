@@ -1,10 +1,17 @@
 package lib.parse.book;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,6 +23,9 @@ public class VolumeInfo {
 
     @JsonProperty("title")
     private String title;
+
+    @JsonProperty("subtitle")
+    private String subtitle;
 
     @JsonProperty("publisher")
     private String publisher;
@@ -31,6 +41,9 @@ public class VolumeInfo {
     }
 
     public String getTitle() {
+        if (subtitle != null && !subtitle.equals("")) {
+            return String.format("%s: %s", title, subtitle);
+        }
         return title;
     }
 
@@ -39,8 +52,13 @@ public class VolumeInfo {
     }
 
     public LocalDate getDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
-        LocalDate date = LocalDate.parse(publishDate, formatter);
+        LocalDate date;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+            date = LocalDate.parse(publishDate, formatter);
+        } catch (DateTimeParseException e) {
+            date = LocalDate.of(Integer.parseInt(publishDate), 1, 1);
+        }
 
         return date;
     }

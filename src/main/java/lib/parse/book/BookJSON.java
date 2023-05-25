@@ -34,10 +34,6 @@ public class BookJSON {
         return items;
     }
 
-    public void setBookData(List<BookData> bookData) {
-        this.items = bookData;
-    }
-
     @Override
     public String toString() {
         String bookDataString = "{";

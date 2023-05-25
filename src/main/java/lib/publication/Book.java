@@ -42,60 +42,58 @@ public class Book implements Publication {
         if (authors.size() > 1) {
             for (int i = 1; i < authors.size(); i++) {
                 if (i == authors.size() - 1) {
-                    str = String.format("%s, & %s, %s.", 
+                    str = String.format("%s, & %s, %s", 
                         str,
                         authors.get(i).getLastName(), 
-                        authors.get(i).getFirstInitial());
+                        authors.get(i).getNonSurnameInitials());
                 } else {
-                    str = String.format("%s, %s, %s.", 
+                    str = String.format("%s, %s, %s", 
                         str,
                         authors.get(i).getLastName(), 
-                        authors.get(i).getFirstInitial());
+                        authors.get(i).getNonSurnameInitials());
                 }
             }
         }
 
-        str = String.format("%s (%s). %s. %s.", 
+        str = String.format("%s (%s). \033[3m%s.\033[0m %s.", 
             str,
             publishDate.getYear(),
             this.title,
             this.publisher);
         
-        str.replaceAll("\\.{2,}", ".");
+        str = str.replaceAll("\\.{2,}", ".");
 
         return str;
     }
 
     public String toMLA() {
-//      https://www.grammarly.com/citations/mla
-//      Last name, First name. Title of Source. Other contributors, Version, Publisher, Year.
-//         return String.format("%s, %s. %s. %d", "Hunag", "K", this.title, this.publishDate.getYear());
-        String str = String.format("%s, %s.", 
-            authors.get(0).getLastName(), 
-            authors.get(0).getFirstName());
-        
-        if (authors.size() > 1) {
-            for (int i = 1; i < authors.size(); i++) {
-                if (i == authors.size() - 1) {
-                    str = String.format("%s, & %s, %s", 
-                        str,
-                        authors.get(i).getLastName(), 
-                        authors.get(i).getFirstName());
-                } else {
-                    str = String.format("%s, %s, %s", 
-                        str,
-                        authors.get(i).getLastName(), 
-                        authors.get(i).getFirstName());
-                }
-            }
+        // https://www.grammarly.com/citations/mla
+        // Last name, First name. Title of Source. Other contributors, Version, Publisher, Year.
+        // return String.format("%s, %s. %s. %d", "Hunag", "K", this.title, this.publishDate.getYear());
+        String str = "";
+
+        if (authors.size() == 1) {
+            str = String.format("%s, %s.",
+                    authors.get(0).getLastName(),
+                    authors.get(0).getFirstNameMiddleInitial());
+        } else if (authors.size() > 2) {
+            str = String.format("%s, %s, et al",
+                    authors.get(0).getLastName(),
+                    authors.get(0).getFirstNameMiddleInitial());
+        } else {
+            str = String.format("%s, %s, and %s",
+                    authors.get(0).getLastName(),
+                    authors.get(0).getFirstNameMiddleInitial(),
+                    authors.get(1).getFullName());
         }
-        str = String.format("%s. %s. %s. %s.", 
+
+        str = String.format("%s. \033[3m%s.\033[0m %s, %s.", 
             str,
             this.title,
             this.publisher,
             publishDate.getYear());
 
-        str.replaceAll("\\.{2,}", ".");
+        str = str.replaceAll("\\.{2,}", ".");
 
         return str;
     }

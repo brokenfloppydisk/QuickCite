@@ -58,10 +58,10 @@ public class Message {
     }
 
     public Paper toPaper(String doiLink) {
-        return new Paper(getAuthors(), title.get(0).replaceAll("\\.", ""), createdDate.toDate(), doiLink, publisher, volume, issue);
+        return new Paper(getAuthors(), title.get(0).replaceAll("\\.", ""), createdDate.toDate(), doiLink, shortJournalTitles.get(0), volume, issue, page);
     }
 
     public Paper toPaper() {
-        return new Paper(getAuthors(), title.get(0).replaceAll("\\.", ""), createdDate.toDate(), DOI, publisher, volume, issue);
+        return new Paper(getAuthors(), title.get(0).replaceAll("\\.", ""), createdDate.toDate(), DOI, shortJournalTitles.get(0), volume, issue, page);
     }
 }

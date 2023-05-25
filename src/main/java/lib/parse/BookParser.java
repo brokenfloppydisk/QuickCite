@@ -19,6 +19,7 @@ public class BookParser extends Parser {
     
     public BookParser(String iSBNString) {
         // Regex taken from https://stackoverflow.com/questions/41271613/use-regex-to-verify-an-isbn-number
+        iSBNString = iSBNString.strip();
         Pattern isbnPattern = Pattern.compile(
             "^(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)[\\d-]+$", 
             Pattern.CASE_INSENSITIVE);
@@ -44,7 +45,7 @@ public class BookParser extends Parser {
 
         HttpRequest request = HttpRequest.newBuilder(
             URI.create(
-                "https://www.googleapis.com/books/v1/volumes?q=isbn:"
+                "https://www.googleapis.com/books/v1/volumes?q=isbn:%20"
                 .concat(iSBNString)
             ))
             .timeout(Duration.ofSeconds(10))

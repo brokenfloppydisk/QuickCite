@@ -10,6 +10,8 @@ import lib.publication.Publication;
 public abstract class Parser {
     private static HttpClient client;
 
+    public Parser() {}
+
     public Publication toPublication() {
         return null;
     }
@@ -20,6 +22,10 @@ public abstract class Parser {
         }
 
         return client;
+    }
+
+    public boolean isValid() {
+        return false;
     }
 
     protected String getRequest(HttpRequest request) {
