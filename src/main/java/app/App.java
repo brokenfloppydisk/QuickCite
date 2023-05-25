@@ -12,6 +12,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to QuickCite!");
+        System.out.println("This tool was created by Kyle Huang (@brokenfloppydisk), Zachary Miller (@londonwafflez), and Berfredd Quezon (@bbq27).");
 
         boolean finished = false;
 
