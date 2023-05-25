@@ -53,20 +53,13 @@ public class ParseTest {
     public void testBookFetch() {
         BookParser testParser = new BookParser("9780134092669");
         Book result = testParser.toPublication();
-        assertTrue(result.getTitle().equals("Computer Systems"));
-
-        System.out.println("APA: " + result.toAPA());
-        System.out.println("MLA: " + result.toMLA());
+        assertTrue(result.getTitle().equals("Computer Systems: A Programmer's Perspective"));
     }
 
     @Test
     public void testDOIFetch() {
         DOIParser testParser = new DOIParser("10.1037/0003-066X.59.1.29/");
         Paper result = testParser.toPublication();
-
         assertTrue(result.getTitle().equals("How the Mind Hurts and Heals the Body"));
-
-        System.out.println("APA: " + result.toAPA());
-        System.out.println("MLA: " + result.toMLA());
     }
 }
